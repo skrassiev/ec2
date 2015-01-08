@@ -8,5 +8,6 @@ cd golang-docker-test-webbench
 
 
 #pull docker test image
+sudo docker pull skrassiev/golang-docker-test-webbench:latest
 echo Now run docker test image with
 echo "sudo docker run -ti --rm  --publish=6060:8080 skrassiev/golang-docker-test-webbench:latest"
