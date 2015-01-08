@@ -19,5 +19,10 @@ echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
 yum install -y docker
 service docker start
 
+
+cat /proc/$(ps auxww|grep docker|grep -v grep | awk '{print $2}')/limits
+
 echo Initialization Done
+echo You need to reboot for ulimit to take effect
+echo After reboot, restart docker with 'sudo service docker restart'
 
