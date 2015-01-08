@@ -2,10 +2,10 @@
 echo Initializing EC2 Amazon Linux instance for golang and docker
 
 #update
-yum update
+yum update -y
 
 #install packages we need
-yum -y install gcc git openssl-devel.x86-64
+yum install -y gcc git openssl-devel.x86-64
 
 #increase ulimits
 echo "*               hard    nofile          65536" >>  /etc/security/limits.conf
