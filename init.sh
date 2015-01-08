@@ -12,7 +12,7 @@ echo "*               hard    nofile          65536" >>  /etc/security/limits.co
 echo "*               soft    nofile          65536" >>  /etc/security/limits.conf
 
 #install and configure go
-curl -sSL https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz | tar -C /usr/local -xzf
+curl -sSL https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz | tar -C /usr/local -xzf -
 echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
 
 #install docker
