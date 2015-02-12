@@ -4,10 +4,10 @@ echo Initializing EC2 Amazon Linux or EC2 Ubuntu instance for golang and docker
 OS=$(grep '^NAME=' /etc/os-release | awk -F\" '{print $2}')
 
 #package manager
-if [ "$OS" == "Ubuntu" ]; then
+if [ "$OS" = "Ubuntu" ]; then
 	PKGM=apt-get
 else
-	PKGM=yun
+	PKGM=yum
 fi
 
 #update dist
@@ -25,7 +25,7 @@ curl -sSL https://storage.googleapis.com/golang/go1.3.3.linux-amd64.tar.gz | tar
 echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
 
 #install docker
-if [ "$OS" == "Ubuntu" ]; then
+if [ "$OS" = "Ubuntu" ]; then
 	curl -sSL https://get.docker.com/ubuntu/ | sh
 else
 	$PKGM install -y docker
