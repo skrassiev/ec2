@@ -32,7 +32,7 @@ else
 fi
 service docker start
 
-
+sleep 1
 cat /proc/$(ps auxww|grep docker|grep -v grep | awk '{print $2}')/limits
 
 echo Initialization Done
