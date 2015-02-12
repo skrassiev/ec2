@@ -1,11 +1,20 @@
 #!/bin/sh
-echo Initializing EC2 Amazon Linux instance for golang and docker
+echo Initializing EC2 Amazon Linux or EC2 Ubuntu instance for golang and docker
 
-#update
-yum update -y
+OS=$(grep '^NAME=' /etc/os-release | awk -F\" '{print $2}')
+
+#package manager
+if [ "$OS" == "Ubuntu" ]; then
+	PKGM=apt-get
+else
+	PKGM=yun
+fi
+
+#update dist
+$PKGM update -y
 
 #install packages we need
-yum install -y gcc git openssl-devel.x86-64
+$PKGM install -y gcc git openssl-devel.x86-64
 
 #increase ulimits
 echo "*               hard    nofile          65536" >>  /etc/security/limits.conf
@@ -16,7 +25,11 @@ curl -sSL https://storage.googleapis.com/golang/go1.3.3.linux-amd64.tar.gz | tar
 echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
 
 #install docker
-yum install -y docker
+if [ "$OS" == "Ubuntu" ]; then
+	curl -sSL https://get.docker.com/ubuntu/ | sh
+else
+	$PKGM install -y docker
+fi
 service docker start
 
 
