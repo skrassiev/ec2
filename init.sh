@@ -6,15 +6,17 @@ OS=$(grep '^NAME=' /etc/os-release | awk -F\" '{print $2}')
 #package manager
 if [ "$OS" = "Ubuntu" ]; then
 	PKGM=apt-get
+	OPENSSL_DEV=libssl-dev 
 else
 	PKGM=yum
+	OPENSSL_DEV=openssl-devel.x86-64
 fi
 
 #update dist
 $PKGM update -y
 
 #install packages we need
-$PKGM install -y gcc git openssl-devel.x86-64
+$PKGM install -y gcc git $OPENSSL_DEV
 
 #increase ulimits
 echo "*               hard    nofile          65536" >>  /etc/security/limits.conf
@@ -34,6 +36,9 @@ service docker start
 
 sleep 1
 cat /proc/$(ps auxww|grep docker|grep -v grep | awk '{print $2}')/limits
+
+#install Fig
+curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; chmod +x /usr/local/bin/fig
 
 echo Initialization Done
 echo You need to reboot for ulimit to take effect
