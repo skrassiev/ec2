@@ -37,8 +37,9 @@ service docker start
 sleep 1
 cat /proc/$(ps auxww|grep docker|grep -v grep | awk '{print $2}')/limits
 
-#install Fig
-curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; chmod +x /usr/local/bin/fig
+#install Docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 
 echo Initialization Done
 echo You need to reboot for ulimit to take effect
