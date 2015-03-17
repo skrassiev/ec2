@@ -2,6 +2,7 @@
 echo Initializing EC2 Amazon Linux or EC2 Ubuntu instance for golang and docker
 
 OS=$(grep '^NAME=' /etc/os-release | awk -F\" '{print $2}')
+OS1=$(cat /etc/redhat-release | awk '{print $1 $2 $3}')
 
 #package manager
 if [ "$OS" = "Ubuntu" ]; then
@@ -29,8 +30,12 @@ echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
 #install docker
 if [ "$OS" = "Ubuntu" ]; then
 	curl -sSL https://get.docker.com/ubuntu/ | sh
+elif [ "$OS1" = "RedHatEnterprise"]; then
+	$PKGM install -y docker --enablerepo=epel
+	sudo chkconfig docker on
 else
 	$PKGM install -y docker
+	sudo chkconfig docker on
 fi
 service docker start
 
