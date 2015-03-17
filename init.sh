@@ -10,7 +10,7 @@ if [ "$OS" = "Ubuntu" ]; then
 	OPENSSL_DEV=libssl-dev 
 else
 	PKGM=yum
-	OPENSSL_DEV=openssl-devel.x86-64
+	OPENSSL_DEV=openssl-devel.x86_64
 fi
 
 #update dist
@@ -31,15 +31,15 @@ echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
 if [ "$OS" = "Ubuntu" ]; then
 	curl -sSL https://get.docker.com/ubuntu/ | sh
 elif [ "$OS1" = "RedHatEnterprise" ]; then
-	$PKGM install -y docker --enablerepo=epel
-	sudo chkconfig docker on
+	$PKGM install -y docker-io --enablerepo=epel
+	chkconfig docker on
 else
-	$PKGM install -y docker
-	sudo chkconfig docker on
+	$PKGM install -y docker-io
+	chkconfig docker on
 fi
 service docker start
 
-sleep 1
+sleep 3
 cat /proc/$(ps auxww|grep docker|grep -v grep | awk '{print $2}')/limits
 
 #install Docker-compose

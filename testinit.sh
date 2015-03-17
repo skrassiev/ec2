@@ -39,7 +39,7 @@ else
 fi
 service docker start
 
-sleep 1
+sleep 3
 cat /proc/$(ps auxww|grep docker|grep -v grep | awk '{print $2}')/limits
 
 #install Docker-compose
