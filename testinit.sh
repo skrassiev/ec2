@@ -30,7 +30,7 @@ $PKGM install -y gcc git $OPENSSL_DEV
 #install docker
 if [ "$OS" = "Ubuntu" ]; then
 	curl -sSL https://get.docker.com/ubuntu/ | sh
-elif [ "$OS1" = "RedHatEnterprise"]; then
+elif [ "$OS1" = "RedHatEnterprise" ]; then
 	$PKGM install -y docker --enablerepo=epel
 	sudo chkconfig docker on
 else
