@@ -30,16 +30,17 @@ $PKGM install -y gcc git $OPENSSL_DEV
 #install docker
 if [ "$OS" = "Ubuntu" ]; then
 	curl -sSL https://get.docker.com/ubuntu/ | sh
+	service docker start
 elif [ "$OS1" = "RedHatEnterprise" ]; then
 	$PKGM install -y docker-io --enablerepo=epel
+	service docker start
 	chkconfig docker on
 else
 	$PKGM install -y docker-io
+	service docker start
 	chkconfig docker on
 fi
-service docker start
 
-sleep 3
 cat /proc/$(ps auxww|grep docker|grep -v grep | awk '{print $2}')/limits
 
 #install Docker-compose
