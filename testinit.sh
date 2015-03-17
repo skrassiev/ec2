@@ -20,12 +20,12 @@ $PKGM update -y
 $PKGM install -y gcc git $OPENSSL_DEV
 
 #increase ulimits
-echo "*               hard    nofile          65536" >>  /etc/security/limits.conf
-echo "*               soft    nofile          65536" >>  /etc/security/limits.conf
+# echo "*               hard    nofile          65536" >>  /etc/security/limits.conf
+# echo "*               soft    nofile          65536" >>  /etc/security/limits.conf
 
 #install and configure go
-curl -sSL https://storage.googleapis.com/golang/go1.3.3.linux-amd64.tar.gz | tar -C /usr/local -xvzf -
-echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
+# curl -sSL https://storage.googleapis.com/golang/go1.3.3.linux-amd64.tar.gz | tar -C /usr/local -xvzf -
+# echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
 
 #install docker
 if [ "$OS" = "Ubuntu" ]; then
