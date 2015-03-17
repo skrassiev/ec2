@@ -10,7 +10,7 @@ if [ "$OS" = "Ubuntu" ]; then
 	OPENSSL_DEV=libssl-dev 
 else
 	PKGM=yum
-	OPENSSL_DEV=openssl-devel.x86-64
+	OPENSSL_DEV=openssl-devel.x86_64
 fi
 
 #update dist
@@ -32,10 +32,10 @@ if [ "$OS" = "Ubuntu" ]; then
 	curl -sSL https://get.docker.com/ubuntu/ | sh
 elif [ "$OS1" = "RedHatEnterprise" ]; then
 	$PKGM install -y docker --enablerepo=epel
-	sudo chkconfig docker on
+	chkconfig docker on
 else
 	$PKGM install -y docker
-	sudo chkconfig docker on
+	chkconfig docker on
 fi
 service docker start
 
