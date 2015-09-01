@@ -30,6 +30,7 @@ echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
 #install docker
 if [ "$OS" = "Ubuntu" ]; then
 	curl -sSL https://get.docker.com/ubuntu/ | sh
+	usermod -aG docker ubuntu
 	service docker start
 elif [ "$OS1" = "RedHatEnterprise" ]; then
 	$PKGM install -y docker-io --enablerepo=epel
