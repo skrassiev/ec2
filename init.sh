@@ -24,7 +24,7 @@ echo "*               hard    nofile          65536" >>  /etc/security/limits.co
 echo "*               soft    nofile          65536" >>  /etc/security/limits.conf
 
 #install and configure go
-curl -sSL https://storage.googleapis.com/golang/go1.3.3.linux-amd64.tar.gz | tar -C /usr/local -xvzf -
+curl -sSL https://storage.googleapis.com/golang/go1.5.linux-amd64.tar.gz | tar -C /usr/local -xvzf -
 echo "export PATH=$PATH:/usr/local/go/bin" >> /etc/profile
 
 #install docker
@@ -44,7 +44,7 @@ fi
 cat /proc/$(ps auxww|grep docker|grep -v grep | awk '{print $2}')/limits
 
 #install Docker-compose
-curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.4.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 echo Initialization Done
